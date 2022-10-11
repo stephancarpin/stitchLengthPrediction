@@ -107,8 +107,8 @@ explainer = lime.lime_tabular.LimeTabularExplainer(X_test_scaled, feature_names=
 import pandas as pd
 feature_names = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
 
-#import numpy as np
-#a=X_test_scaled[:4]
+import numpy as np
+a=X_test_scaled[:4]
 #a
 
 df=pd.DataFrame(a)

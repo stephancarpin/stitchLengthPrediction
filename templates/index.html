@@ -7,6 +7,7 @@
 <div class="row" >
       
        <div class="col-sm-6 " >
+
               <div class="card" >
                      
                             <div class="card-header">
@@ -17,14 +18,12 @@
                             
                                   <div class="form-group">
                                      <label for="exampleFormControlInput1">Count</label>
-                                     <input type="number" class="form-control" id="Count" placeholder="0">
+                                     <input type="number" step="any" class="form-control" name="yarn_count" id="Count" placeholder="0">
                                    </div>
                                   
                             </div>
               </div>
               <div class="card" >
-                 
-                            
                      <div class="card-header">
                             <label for="title">Fabric Parameters</label>
                      </div>
@@ -32,11 +31,13 @@
                             
                                   <div class="form-group">
                                      <label for="Density">Density</label>
-                                     <input type="number" class="form-control" id="Density" placeholder="0">
+                                     <input type="number" class="form-control" name="density-data" id="Density" placeholder="0">
+                                     <label for="Density">Width</label>
+                                     <input type="number" class="form-control" name="width-data" id="Width" placeholder="0">
                                    </div>
                                    <div class="form-group">
                                           <label for="Shade">Shade</label>
-                                          <select class="form-control" id="Shade">
+                                          <select class="form-control" name="shade-data" id="Shade">
                                             <option>White</option>
                                             <option>Light</option>
                                             <option>Medium</option>
@@ -47,9 +48,9 @@
                                    </div>
                                    <div class="form-group">
                                           <label for="shrinkage_length">Shrinkage Length</label>
-                                          <input type="number" class="form-control" id="shrinkage_length" placeholder="0">
+                                          <input  step="any" type="number" class="form-control" name="shrinkage_length-data" id="shrinkage_length" placeholder="0">
                                           <label for="shrinkage_width">Shrinkage Width</label>
-                                          <input type="number" class="form-control" id="shrinkage_width" placeholder="0">
+                                          <input type="number" class="form-control" name="shrinkage_width-data" id="shrinkage_width" placeholder="0">
                                    </div>
                      </div>
                            
@@ -62,15 +63,15 @@
                      
                            <div class="form-group">
                               <label for="Diameter">Diameter</label>
-                              <input type="number" class="form-control" id="Diameter" placeholder="0">
+                              <input type="number" class="form-control" name="diameter-data" id="Diameter" placeholder="0">
                               <label for="Gauge">Gauge</label>
-                              <input type="number" class="form-control" id="Gauge" placeholder="0">
+                              <input type="number" class="form-control" name="gauge-data" id="Gauge" placeholder="0">
                               <label for="Needles">Needles</label>
-                              <input type="number" class="form-control" id="Needles" placeholder="0">
+                              <input type="number" class="form-control" name="needles-data" id="Needles" placeholder="0">
                               <label for="Needles">Feeders</label>
-                              <input type="number" class="form-control" id="Feeders" placeholder="0">
+                              <input type="number" class="form-control" name="feeders-data" id="Feeders" placeholder="0">
                               <label for="Rpm">Rpm</label>
-                              <input type="number" class="form-control" id="Rpm" placeholder="0">
+                              <input type="number" class="form-control" name="rpm-data"  id="Rpm" placeholder="0">
                             </div>
                            
                      </div>
@@ -90,6 +91,11 @@
                      <div class="card-header  bg-primary mb-3 ">
                             <label for="title">Predictions</label>
                      </div>
+                     <input class="btn btn-primary" type="submit">  
+                     <span >    Prediction : {{ prediction_output }}</span>
+                     <span> Tightness factor: {{tightness_factor}}</span>
+                 </input>
+                   
                      <div class="card-body justify-content-center">
                             <div class="form-group">
                                    <label for="Stitch-length">Stitch-length</label>
@@ -105,7 +111,7 @@
              
        </div>
      
-</div>
+    </div>
 </form>
 
 
