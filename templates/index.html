@@ -7,55 +7,60 @@
 <div class="row" >
       
        <div class="col-sm-6 " >
+              <div class="card-group">
 
-              <div class="card" >
-                     
+              
+                     <div class="card" >
+                            
+                                   <div class="card-header">
+                                          <label for="title">Yarn Parameters</label>
+                                   </div>
+                            
+                                   <div class="card-body justify-content-center">
+                                   
+                                   <div class="form-group">
+                                          <label for="exampleFormControlInput1">Count</label>
+                                          <input  step="0.01" required type="number" value="{{request.form['yarn_count']}}" class="form-control" name="yarn_count" id="Count" placeholder="0">
+                                          </div>
+                                   
+                                   </div>
+                     </div>
+                     <div class="card" >
                             <div class="card-header">
-                                   <label for="title">Yarn Parameters</label>
+                                   <label for="title">Fabric Parameters</label>
                             </div>
-                           
-                            <div class="card-body justify-content-center">
-                            
-                                  <div class="form-group">
-                                     <label for="exampleFormControlInput1">Count</label>
-                                     <input type="number" step="any" class="form-control" name="yarn_count" id="Count" placeholder="0">
-                                   </div>
-                                  
+                                   <div class="card-body justify-content-center">
+                                   
+                                   <div class="form-group">
+                                          <label for="Density">Density</label>
+                                          <input required type="number" value="{{request.form['density-data']}}" class="form-control" name="density-data" id="Density" placeholder="0">
+                                          <label required for="Density">Width</label>
+                                          <input required type="number" value="{{request.form['width-data']}}" class="form-control" name="width-data" id="Width" placeholder="0">
+                                          </div>
+                                          <div class="form-group">
+                                                 <label for="Shade">Shade</label>
+                                                 <select required value="{{request.form['shade-data']}}"  class="form-control" name="shade-data" id="Shade">
+                                                        <option></option>
+                                                 <option>White</option>
+                                                 <option>Light</option>
+                                                 <option>Medium</option>
+                                                 <option>Dark</option>
+                                                 <option>Extra Dark</option>
+                                                 <option>Black</option>
+                                          
+                                                 </select>
+                                          
+                                          </div>
+                                          <div class="form-group">
+                                                 <label for="shrinkage_length">Shrinkage Length</label>
+                                                 <input step="0.01"  required  value="{{request.form['shrinkage_length-data']}}" step="any" type="number" class="form-control" name="shrinkage_length-data" id="shrinkage_length" placeholder="0">
+                                                 <label   for="shrinkage_width">Shrinkage Width</label>
+                                                 <input step="0.01" required type="number" value="{{request.form['shrinkage_width-data']}}"  class="form-control" name="shrinkage_width-data" id="shrinkage_width" placeholder="0">
+                                          </div>
                             </div>
-              </div>
-              <div class="card" >
-                     <div class="card-header">
-                            <label for="title">Fabric Parameters</label>
-                     </div>
-                            <div class="card-body justify-content-center">
                             
-                                  <div class="form-group">
-                                     <label for="Density">Density</label>
-                                     <input type="number" class="form-control" name="density-data" id="Density" placeholder="0">
-                                     <label for="Density">Width</label>
-                                     <input type="number" class="form-control" name="width-data" id="Width" placeholder="0">
-                                   </div>
-                                   <div class="form-group">
-                                          <label for="Shade">Shade</label>
-                                          <select class="form-control" name="shade-data" id="Shade">
-                                            <option>White</option>
-                                            <option>Light</option>
-                                            <option>Medium</option>
-                                            <option>Dark</option>
-                                            <option>Extra Dark</option>
-                                            <option>Black</option>
-                                          </select>
-                                   </div>
-                                   <div class="form-group">
-                                          <label for="shrinkage_length">Shrinkage Length</label>
-                                          <input  step="any" type="number" class="form-control" name="shrinkage_length-data" id="shrinkage_length" placeholder="0">
-                                          <label for="shrinkage_width">Shrinkage Width</label>
-                                          <input type="number" class="form-control" name="shrinkage_width-data" id="shrinkage_width" placeholder="0">
-                                   </div>
                      </div>
-                           
-              </div>
-              <div class="card" >
+                     <div class="card" >
                      <div class="card-header">
                             <label for="title">Machine Parameters</label>
                      </div>
@@ -63,17 +68,22 @@
                      
                            <div class="form-group">
                               <label for="Diameter">Diameter</label>
-                              <input type="number" class="form-control" name="diameter-data" id="Diameter" placeholder="0">
-                              <label for="Gauge">Gauge</label>
-                              <input type="number" class="form-control" name="gauge-data" id="Gauge" placeholder="0">
-                              <label for="Needles">Needles</label>
-                              <input type="number" class="form-control" name="needles-data" id="Needles" placeholder="0">
-                              <label for="Needles">Feeders</label>
-                              <input type="number" class="form-control" name="feeders-data" id="Feeders" placeholder="0">
+                              <input required type="number" value="{{request.form['diameter-data']}}"  class="form-control" name="diameter-data" id="Diameter" placeholder="0">
+                              <label  for="Gauge">Gauge</label>
+                              <input required type="number" value="{{request.form['gauge-data']}}" class="form-control" name="gauge-data" id="Gauge" placeholder="0">
+                              <label  for="Needles">Needles</label>
+                              <input required type="number" value="{{request.form['needles-data']}}" class="form-control" name="needles-data" id="Needles" placeholder="0">
+                              <label  for="Needles">Feeders</label>
+                              <input required type="number" value="{{request.form['feeders-data']}}"  class="form-control" name="feeders-data" id="Feeders" placeholder="0">
                               <label for="Rpm">Rpm</label>
-                              <input type="number" class="form-control" name="rpm-data"  id="Rpm" placeholder="0">
+                              <input required type="number"  value="{{request.form['rpm-data']}}"  class="form-control" name="rpm-data"  id="Rpm" placeholder="0">
                             </div>
                            
+                     </div>
+                     <div class="card-footer">
+                            <div class="form-group">
+                                   <input class="btn btn-primary" type="submit">  
+                            </div>
                      </div>
                     
                     
@@ -82,21 +92,36 @@
 
               </div>
 
+           </div>
+
        </div>
        
        <div class="col-sm-6">
 
 
               <div class="card" style="height:100%">
-                     <div class="card-header  bg-primary mb-3 ">
-                            <label for="title">Predictions</label>
+                     <div class="card-header">
+                            <label for="title">Results</label>
                      </div>
-                     <input class="btn btn-primary" type="submit">  
-                     <span >    Prediction : {{ prediction_output }}</span>
-                     <span> Tightness factor: {{tightness_factor}}</span>
-                 </input>
+                    
+                    
                    
                      <div class="card-body justify-content-center">
+                            <div class="input-group mb-3">
+                                   <div class="input-group-prepend">
+                                     <span class="input-group-text" id="basic-addon3">Predictions</span>
+                                   </div>
+                                   <input  disabled value="{{ prediction_output }} "type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                            </div>
+                          
+                          
+                            <div class="input-group mb-3">
+                                   <div class="input-group-prepend">
+                                     <span class="input-group-text" id="basic-addon3">Tightness factor</span>
+                                   </div>
+                                   <input value="{{tightness_factor}}" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                            </div>
+                        </input>
                             <div class="form-group">
                                    <label for="Stitch-length">Stitch-length</label>
                                    <input type="number" class="form-control" id="Stitch-length" placeholder="0">
