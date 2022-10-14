@@ -33,7 +33,8 @@ y = df['stitch_length']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 20)
 #Scale dataset
 from sklearn.preprocessing import StandardScaler
-scaler=StandardScaler()
+scaler = StandardScaler()
+
 scaler.fit(X_train)
 
 X_train_scaled = scaler.transform(X_train)
@@ -85,8 +86,26 @@ def Training():
 
 
 def predict(model,arr_2d):
+
+
+    feature_names = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
+    df=pd.DataFrame(data = arr_2d,columns=feature_names)
+    #print(df)
+    #a=df.iloc[0]
+    print(df)
+
+    scale_input          = scaler.transform(df)
+    print('------------ scale input----------')
+    print(scale_input)
+    #scale_input_reshape = scale_input.to_numpy().reshape(1,16)
+   
+   
+    predictions = 0
+
+   
+ 
     #Predict on test data
-    predictions = model.predict(arr_2d)
+    predictions = model.predict(scale_input)
     #y_real      = y_test[:10]
     print("Predicted values are: ", predictions)
 

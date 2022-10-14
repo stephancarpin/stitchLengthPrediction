@@ -1,14 +1,9 @@
 
+from unittest import case
 from flask import Flask, render_template, request, url_for, flash, redirect
 import numpy as np
 from regression import *
 import math 
-
-
-
-
-
-
 
 app = Flask(__name__,static_folder='assets')
 app.config["CACHE_TYPE"] = "null"
@@ -34,16 +29,35 @@ input_array = []
 def index():
     if request.method == 'POST':
 
-        yarn_count = float(request.form['yarn_count'])
-        density    = float(request.form['density-data'])
-        width      = float(request.form['width-data'])
-        shade      = request.form['shade-data']
         white      = 0
-        light      = 1
+        light      = 0
         medium     = 0
         dark       = 0
         extra_dark = 0
         black      = 0
+
+
+        yarn_count = float(request.form['yarn_count'])
+        density    = float(request.form['density-data'])
+        width      = float(request.form['width-data'])
+        #Encoding for shade
+        shade      = request.form['shade-data']
+        if(shade == 'white'):
+            white = 1
+        if(shade == 'light'):
+            light = 1
+        if(shade == 'medium'):
+            medium = 1
+        if(shade == 'dark'):
+            dark = 1
+        if(shade == 'extra_dark'):
+            extra_dark = 1
+        if(shade == 'black'):
+            black = 1
+
+
+        
+       
         diameter   = float(request.form['diameter-data'])
         gauge      = float(request.form['gauge-data'])
         feeders    = float(request.form['feeders-data'])
@@ -51,11 +65,13 @@ def index():
         rpm        = float(request.form['rpm-data'])
         shrinkage_length = float(request.form['shrinkage_length-data'])
         shrinkage_width  = float(request.form['shrinkage_width-data'])
-        input_array = [yarn_count, density, width,white, light, medium, dark, extra_dark, black, diameter, gauge, needles, feeders, rpm, shrinkage_length,shrinkage_width]
+
+        feature_names = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
+        input_array   = [yarn_count, density, width,white, light, medium, dark, extra_dark, black, diameter, gauge, needles, feeders, rpm, shrinkage_length,shrinkage_width]
         print('-----from frontend------')
         new_ar = np.array(input_array)
         new_ar = new_ar.astype(np.float64)
-        arr_2d       = np.reshape(new_ar,[1,16])
+        arr_2d = np.reshape(new_ar,[1,16])
         print(arr_2d)
         stitch_length = float(predict(select_model,arr_2d))
         
@@ -67,3 +83,5 @@ def index():
                                              tightness_factor = math.sqrt(yarn_count)/(stitch_length*10))
 
     return render_template('index.html', prediction_output="")
+
+

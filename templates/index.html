@@ -20,7 +20,7 @@
                                    
                                    <div class="form-group">
                                           <label for="exampleFormControlInput1">Count</label>
-                                          <input  step="0.01" required type="number" value="{{request.form['yarn_count']}}" class="form-control" name="yarn_count" id="Count" placeholder="0">
+                                          <input  step="0.00000001" required type="number" value="{{request.form['yarn_count']}}" class="form-control" name="yarn_count" id="Count" placeholder="0">
                                           </div>
                                    
                                    </div>
@@ -39,17 +39,8 @@
                                           </div>
                                           <div class="form-group">
                                                  <label for="Shade">Shade</label>
-                                                 <select required value="{{request.form['shade-data']}}"  class="form-control" name="shade-data" id="Shade">
-                                                        <option></option>
-                                                 <option>White</option>
-                                                 <option>Light</option>
-                                                 <option>Medium</option>
-                                                 <option>Dark</option>
-                                                 <option>Extra Dark</option>
-                                                 <option>Black</option>
-                                          
-                                                 </select>
-                                          
+                                                 <input required value="{{request.form['shade-data']}}"  class="form-control" name="shade-data" id="Shade">
+                                                
                                           </div>
                                           <div class="form-group">
                                                  <label for="shrinkage_length">Shrinkage Length</label>
@@ -122,10 +113,7 @@
                                    <input value="{{tightness_factor}}" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                             </div>
                         </input>
-                            <div class="form-group">
-                                   <label for="Stitch-length">Stitch-length</label>
-                                   <input type="number" class="form-control" id="Stitch-length" placeholder="0">
-                                 </div>
+                        
 
                      </div>
                             
