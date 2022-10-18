@@ -1,5 +1,3 @@
-import re
-from numpy import NaN
 import pandas as pd
 from pandas import read_csv
 from sklearn.model_selection import train_test_split
@@ -53,13 +51,6 @@ print(type(X_test_scaled))
 
 #ON initialisation of app
 def Training():
-   
-
-    
-   
- 
-   
-
     model = Sequential()
     model.add(Dense(50, input_dim=16, activation='tanh'))
     model.add(Dense(80, activation='relu'))
