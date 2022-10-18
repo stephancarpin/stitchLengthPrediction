@@ -13,7 +13,12 @@ from sklearn.model_selection import train_test_split
 from keras.layers import Dropout 
 from keras import regularizers 
 
-import keras_tuner
+import matplotlib
+import matplotlib.pyplot as plt
+import lime
+import lime.lime_tabular
+plt.switch_backend('Agg')
+print("Using:",matplotlib.get_backend())
 
 from tensorflow import keras
 
@@ -85,29 +90,27 @@ def Training():
     return model
 
 
-def predict(model,arr_2d):
+def predict(model,scale_input):
 
-
-    feature_names = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
-    df=pd.DataFrame(data = arr_2d,columns=feature_names)
-    #print(df)
-    #a=df.iloc[0]
-    print(df)
-
-    scale_input          = scaler.transform(df)
-    print('------------ scale input----------')
-    print(scale_input)
-    #scale_input_reshape = scale_input.to_numpy().reshape(1,16)
-   
-   
-    predictions = 0
-
-   
- 
     #Predict on test data
     predictions = model.predict(scale_input)
     #y_real      = y_test[:10]
     print("Predicted values are: ", predictions)
+
+    #revert to df for lime
+    df = pd.DataFrame(scale_input)
+    a  =  df.iloc[0]
+    print('------------ df reconvert----------')
+    print(a)
+
+    feature_names = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width','stitch_length']
+    
+    explainer = lime.lime_tabular.LimeTabularExplainer(X_test_scaled, feature_names=feature_names, verbose=True, mode='regression')
+    explain_data_point = explainer.explain_instance(a,model.predict, num_features=16)
+    fig = explain_data_point.as_pyplot_figure()
+    fig.savefig('./assets/images/lime_report.jpg', bbox_inches="tight")
+    explain_data_point.save_to_file('./assets/images/explainer.html')
+
 
     return predictions
     # print("Real values are: ", y_real)

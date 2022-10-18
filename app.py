@@ -5,6 +5,7 @@ import numpy as np
 from regression import *
 import math 
 
+
 app = Flask(__name__,static_folder='assets')
 app.config["CACHE_TYPE"] = "null"
 app.config['TESTING']    = True
@@ -37,7 +38,7 @@ def index():
         black      = 0
 
 
-        yarn_count = float(request.form['yarn_count'])
+        yarn_count = 590.5/float(request.form['yarn_count'])
         density    = float(request.form['density-data'])
         width      = float(request.form['width-data'])
         #Encoding for shade
@@ -66,21 +67,31 @@ def index():
         shrinkage_length = float(request.form['shrinkage_length-data'])
         shrinkage_width  = float(request.form['shrinkage_width-data'])
 
-        feature_names = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
+        #create array from input flask
         input_array   = [yarn_count, density, width,white, light, medium, dark, extra_dark, black, diameter, gauge, needles, feeders, rpm, shrinkage_length,shrinkage_width]
-        print('-----from frontend------')
-        new_ar = np.array(input_array)
-        new_ar = new_ar.astype(np.float64)
-        arr_2d = np.reshape(new_ar,[1,16])
-        print(arr_2d)
-        stitch_length = float(predict(select_model,arr_2d))
+      
+        input_array_to_numpy               = np.array(input_array)
+        input_array_to_numpy_float         = input_array_to_numpy.astype(np.float64)
+        input_array_to_numpy_float_reshape = np.reshape(input_array_to_numpy_float,[1,16])
+        print(input_array_to_numpy_float_reshape)
+
+
+        columns_input = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
+        df=pd.DataFrame(data = input_array_to_numpy_float_reshape,columns=columns_input)
         
 
+        scale_input_arr          = scaler.transform(df)
+        print('------------ scale input----------')
+        print(scale_input_arr)
 
+
+        #Output from prediction function
+        stitch_length = float(predict(select_model,scale_input_arr))
+        tightness_factor= math.sqrt(yarn_count)/(stitch_length*10)
         #Pass model
         
         return render_template('index.html', prediction_output = stitch_length,
-                                             tightness_factor = math.sqrt(yarn_count)/(stitch_length*10))
+                                             tightness_factor  = round(tightness_factor,2))
 
     return render_template('index.html', prediction_output="")
 
