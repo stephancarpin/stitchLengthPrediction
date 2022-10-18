@@ -17,6 +17,7 @@ pip install
 export FLASK_DEBUG=1
 flask run  --debugger
 #in docker
+docker run -i -t -p 5000:5000 --name python-server -v ~/Desktop/www:/app/www python:latest
 flask run --host=0.0.0.0
 ####in app.py
  app.config['TEMPLATES_AUTO_RELOAD'] = True 
