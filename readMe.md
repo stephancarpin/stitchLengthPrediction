@@ -16,5 +16,7 @@ pip install
 ##Run in debug mode
 export FLASK_DEBUG=1
 flask run  --debugger
+#in docker
+flask run --host=0.0.0.0
 ####in app.py
  app.config['TEMPLATES_AUTO_RELOAD'] = True 
