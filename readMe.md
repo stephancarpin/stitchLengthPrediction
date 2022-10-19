@@ -16,6 +16,7 @@ pip install lime
 ##Run in debug mode
 export FLASK_DEBUG=1
 flask run  --debugger
+flask run --host=127.0.0.1 --port 5002
 ##On docker
 flask run --host=0.0.0.0
 docker run -i -t -p 5000:5000 --name python-server -v ~/Desktop/www:/app/www python:latest
