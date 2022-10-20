@@ -92,7 +92,7 @@
 
               <div class="card" style="height:100%">
                      <div class="card-header">
-                            <label for="title">Results</label>
+                            <label for="title" style="font-weight: bold;">Results</label>
                      </div>
                     
                     
@@ -100,7 +100,7 @@
                      <div class="card-body justify-content-center">
                             <div class="input-group mb-3">
                                    <div class="input-group-prepend">
-                                     <span class="input-group-text" id="basic-addon3">Predictions &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</span>
+                                     <span class="input-group-text" style="font-weight: bold;" id="basic-addon3">Predicted Stitch Length(cm) </span>
                                    </div>
                                    <input  disabled value="{{ prediction_output }} "type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                             </div>
@@ -108,16 +108,19 @@
                           
                             <div class="input-group mb-3">
                                    <div class="input-group-prepend">
-                                     <span class="input-group-text" id="basic-addon3">Tightness factor</span>
+                                     <span class="input-group-text"  style="font-weight: bold;" id="basic-addon3">Tightness factor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</span>
                                    </div>
                                    <input value="{{tightness_factor}}" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                             </div>
+                            <hr>
                             <div>
-                                   <img id="lime_report" src="">
+                                   <h5>Lime Explainer</h5>
+                                   <img id="lime_report" src="" style="width:90% ;">
                                     <!-- <iframe style="height: 100%" src="/assets/images/explainer.html" title="description"></iframe> -->
 
 
                             </div>
+                            <hr>
                         
                         
 
