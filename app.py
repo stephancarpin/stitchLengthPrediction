@@ -86,7 +86,7 @@ def index():
         tightness_factor= math.sqrt(yarn_count)/(stitch_length*10)
         #Pass model
         
-        return render_template('index.html', prediction_output = stitch_length,
+        return render_template('index.html', prediction_output = round(stitch_length,6),
                                              tightness_factor  = round(tightness_factor,2))
 
     return render_template('index.html', prediction_output="")
