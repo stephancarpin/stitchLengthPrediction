@@ -8,6 +8,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 from keras.layers import Dropout 
 from keras import regularizers 
 
@@ -23,7 +24,13 @@ from tensorflow import keras
 
 print('Training - Train Model(Stitch Length Prediction)')
 # load data and arrange into Pandas dataframe
-df = pd.read_csv('./data/dataset_prepro.csv')
+df = pd.read_csv('./data/dataset_shade_2.csv')
+# Instantiate LabelEncoder
+le = LabelEncoder()
+# Encode single column status
+df.shade = le.fit_transform(df.shade)
+# Print df.head for checking the transformation
+df.head()
 
 print(df.head())
 
@@ -52,8 +59,10 @@ print(type(X_test_scaled))
 #ON initialisation of app
 def Training():
     model = Sequential()
-    model.add(Dense(50, input_dim=16, activation='tanh'))
+    model.add(Dense(90, input_dim=11, activation='relu'))
     model.add(Dense(80, activation='relu'))
+    model.add(Dense(80, activation='sigmoid'))
+    model.add(Dense(60, activation='sigmoid'))
     model.add(Dense(50, activation='relu'))
     model.add(Dense(50, activation='relu'))
     model.add(Dense(50, activation='relu'))
@@ -94,10 +103,10 @@ def predict(model,scale_input):
     print('------------ df reconvert----------')
     print(a)
 
-    feature_names = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width','stitch_length']
+    feature_names = ['count', 'density', 'width','shade', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width','stitch_length']
     
     explainer = lime.lime_tabular.LimeTabularExplainer(X_test_scaled, feature_names=feature_names, verbose=True, mode='regression')
-    explain_data_point = explainer.explain_instance(a,model.predict, num_features=16)
+    explain_data_point = explainer.explain_instance(a,model.predict, num_features=11)
     fig = explain_data_point.as_pyplot_figure()
     fig.savefig('./assets/images/lime_report.jpg', bbox_inches="tight")
     explain_data_point.save_to_file('./assets/images/explainer.html')

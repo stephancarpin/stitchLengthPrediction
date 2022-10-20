@@ -29,32 +29,28 @@ input_array = []
 @app.route('/', methods=('GET', 'POST') )
 def index():
     if request.method == 'POST':
+        shade_encoded = 0
 
-        white      = 0
-        light      = 0
-        medium     = 0
-        dark       = 0
-        extra_dark = 0
-        black      = 0
+        
 
 
         yarn_count = 590.5/float(request.form['yarn_count'])
         density    = float(request.form['density-data'])
         width      = float(request.form['width-data'])
-        #Encoding for shade
+        #Encoding for shade label encoded
         shade      = request.form['shade-data']
         if(shade == 'white'):
-            white = 1
+            shade_encoded = 0
         if(shade == 'light'):
-            light = 1
+            shade_encoded = 1
         if(shade == 'medium'):
-            medium = 1
+            shade_encoded = 2
         if(shade == 'dark'):
-            dark = 1
+            shade_encoded = 3
         if(shade == 'extra_dark'):
-            extra_dark = 1
+            shade_encoded = 4
         if(shade == 'black'):
-            black = 1
+            shade_encoded = 5
 
 
         
@@ -68,15 +64,15 @@ def index():
         shrinkage_width  = float(request.form['shrinkage_width-data'])
 
         #create array from input flask
-        input_array   = [yarn_count, density, width,white, light, medium, dark, extra_dark, black, diameter, gauge, needles, feeders, rpm, shrinkage_length,shrinkage_width]
+        input_array   = [yarn_count, density, width,shade_encoded, diameter, gauge, needles, feeders, rpm, shrinkage_length,shrinkage_width]
       
         input_array_to_numpy               = np.array(input_array)
         input_array_to_numpy_float         = input_array_to_numpy.astype(np.float64)
-        input_array_to_numpy_float_reshape = np.reshape(input_array_to_numpy_float,[1,16])
+        input_array_to_numpy_float_reshape = np.reshape(input_array_to_numpy_float,[1,11])
         print(input_array_to_numpy_float_reshape)
 
 
-        columns_input = ['count', 'density', 'width','white', 'light', 'medium', 'dark', 'extra_dark', 'black', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
+        columns_input = ['count', 'density', 'width','shade', 'diameter', 'gauge', 'needles', 'feeders', 'rpm', 'shrinkage_length', 'shrinkage_width']
         df=pd.DataFrame(data = input_array_to_numpy_float_reshape,columns=columns_input)
         
 
