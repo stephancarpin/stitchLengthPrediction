@@ -4,6 +4,8 @@ from flask import Flask, render_template, request, url_for, flash, redirect
 import numpy as np
 from regression import *
 import math 
+import os
+os.remove("./assets/images/lime_report.jpg")
 
 
 app = Flask(__name__,static_folder='assets')
@@ -40,17 +42,17 @@ def index():
         #Encoding for shade label encoded
         shade      = request.form['shade-data']
         if(shade == 'white'):
-            shade_encoded = 0
-        if(shade == 'light'):
-            shade_encoded = 1
-        if(shade == 'medium'):
-            shade_encoded = 2
-        if(shade == 'dark'):
-            shade_encoded = 3
-        if(shade == 'extra_dark'):
-            shade_encoded = 4
-        if(shade == 'black'):
             shade_encoded = 5
+        if(shade == 'light'):
+            shade_encoded = 3
+        if(shade == 'medium'):
+            shade_encoded = 4
+        if(shade == 'dark'):
+            shade_encoded = 1
+        if(shade == 'extra_dark'):
+            shade_encoded = 2
+        if(shade == 'black'):
+            shade_encoded = 0
 
 
         
@@ -86,8 +88,9 @@ def index():
         tightness_factor= math.sqrt(yarn_count)/(stitch_length*10)
         #Pass model
         
-        return render_template('index.html', prediction_output = round(stitch_length,6),
-                                             tightness_factor  = round(tightness_factor,2))
+        return render_template('index.html', prediction_output = round(stitch_length,6) * 100,
+                                             tightness_factor  = round(tightness_factor,2),
+                                             LFA  = int(stitch_length * needles * 2))
 
     return render_template('index.html', prediction_output="")
 
