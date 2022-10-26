@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<form method="post">
+<form id="FormID" method="post">
 <div class="row" >
       
        <div class="col-sm-6 " >
@@ -73,7 +73,8 @@
                      </div>
                      <div class="card-footer">
                             <div class="form-group">
-                                   <input class="btn btn-primary" type="submit">  
+                                   <input class="btn btn-primary" type="submit"> 
+                                   <input class="btn btn-secondary" type="button" value="Refresh" onClick="refreshPage()">   
                             </div>
                      </div>
                     
@@ -102,7 +103,7 @@
                                    <div class="input-group-prepend">
                                      <span class="input-group-text" style="font-weight: bold;" id="basic-addon3">Predicted Stitch Length(cm) </span>
                                    </div>
-                                   <input  disabled value="{{ prediction_output }} "type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                   <input  step="0.01" disabled value="{{ prediction_output }} "type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
                             </div>
                           
                           
@@ -110,13 +111,13 @@
                                    <div class="input-group-prepend">
                                      <span class="input-group-text"  style="font-weight: bold;" id="basic-addon3">Tightness factor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</span>
                                    </div>
-                                   <input value="{{tightness_factor}}" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                   <input value="{{tightness_factor}}" type="text" class="form-control" id="tightness_factor" aria-describedby="basic-addon3">
                             </div>
                             <div class="input-group mb-3">
                                    <div class="input-group-prepend">
                                      <span class="input-group-text"  style="font-weight: bold;" id="basic-addon3">LFA cm (2 revolutions) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</span>
                                    </div>
-                                   <input value="{{LFA}}" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                   <input value="{{LFA}}" type="text" class="form-control" id="LFA" aria-describedby="basic-addon3">
                             </div>
                             <hr>
                             <div>

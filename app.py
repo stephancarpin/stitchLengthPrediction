@@ -5,7 +5,7 @@ import numpy as np
 from regression import *
 import math 
 import os
-os.remove("./assets/images/lime_report.jpg")
+#os.remove("./assets/images/lime_report.jpg")
 
 
 app = Flask(__name__,static_folder='assets')
@@ -16,7 +16,7 @@ app.config['SECRET_KEY'] = 'b1808f24613321f9007f0e8b31759bc269e8fc6a6a2fb51d'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-select_model = Training()
+
 
 
 # csv_data= pd.read_csv('./data/dataset_pre_processed.csv',header=0)
@@ -82,13 +82,13 @@ def index():
         print('------------ scale input----------')
         print(scale_input_arr)
 
-
+# 
         #Output from prediction function
-        stitch_length = float(predict(select_model,scale_input_arr))
+        stitch_length = float(predict(scale_input_arr))
         tightness_factor= math.sqrt(yarn_count)/(stitch_length*10)
         #Pass model
         
-        return render_template('index.html', prediction_output = round(stitch_length,6) * 100,
+        return render_template('index.html', prediction_output = '%.4f'%(stitch_length * 100),
                                              tightness_factor  = round(tightness_factor,2),
                                              LFA  = int(stitch_length * needles * 2))
 
