@@ -22,3 +22,5 @@ flask run --host=0.0.0.0
 docker run -i -t -p 5000:5000 --name python-server -v ~/Desktop/www:/app/www python:latest
 ####in app.py
  app.config['TEMPLATES_AUTO_RELOAD'] = True 
+#Run even when closing terminal
+nohup flask run --host=0.0.0.0 &

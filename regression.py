@@ -60,8 +60,8 @@ def predict(scale_input):
     explainer = lime.lime_tabular.LimeTabularExplainer(X_test_scaled, feature_names=feature_names, verbose=True, mode='regression')
     explain_data_point = explainer.explain_instance(a,saved_model.predict, num_features=11)
     fig = explain_data_point.as_pyplot_figure()
-    #fig.savefig('./assets/images/lime_report.jpg', bbox_inches="tight")
-    #explain_data_point.save_to_file('./assets/images/explainer.html')
+    fig.savefig('./assets/images/lime_report.jpg', bbox_inches="tight")
+    explain_data_point.save_to_file('./assets/images/explainer.html')
 
 
     return predictions
